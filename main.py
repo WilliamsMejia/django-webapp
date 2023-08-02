@@ -11,5 +11,7 @@ with open('Clean_RV.csv') as csv_file:
 
     for row in reader:
         booknum, book, chapternum, versenum, verse = row
-        if book != book:
+        if books != book:
+            currList.add(book)
+            books = book
             
