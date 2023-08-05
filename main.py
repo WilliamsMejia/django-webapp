@@ -22,25 +22,43 @@ with open('Clean_RV.csv') as csv_file:
     for row in reader:
         break
     for row in reader:
-        #print(row, "HEEEEEEEEEEEEEEEEEEEEEEEEEEEE2222222222222")
+
         break
 
 
     for row in reader:
         booknum, book, chapternum, versenum, verse = row
-        #print("Book :", book, "Chapter:", chapternum, "VerseNum:",versenum,"verse:",verse)
 
         #Checking if its the start of a new book and if it is then adding a dictionary with a list value to the corresponding book key in 'starting_dict'
-        if (books != book and book != 'long_name' and book !='Book'):
+        if (books != book):
+            chapDict.update({chapNum:verseList})
+            verseList = []
+            chapNum = int(chapternum)
             starting_dict.update({books:chapDict})
+            chapDict = {}
             books = book
 
         #checking if its a new chapter if it is is then we add a key value pair {chapternum: verseList} to the chapDictionary
         if int(chapternum) != chapNum:
-            print(verseList)
-            chapDict.update({chapternum:verseList})
+
+            chapDict.update({chapNum:verseList})
             verseList = []
-            chapNum = int(chapternum) + 1
+            chapNum = int(chapternum)
+
+        #the way this code is specifially set up, it would not catch the last chapter of the book of Apocolipse so I added this edge case catch
+        verseList.append(verse)
+        if book == "Apocalipsis" and chapternum == "21" and versenum == '27':
+            chapDict.update({chapNum:verseList})
+            verseList = []
+            chapNum = int(chapternum)
+            starting_dict.update({books:chapDict})
+            break
+
+    #This is just 
+    for row in reader:
+        booknum, book, chapternum, versenum, verse = row
         verseList.append(verse)
 
-    #print(starting_dict['Jonás'])
+    chapDict.update({22:verseList})
+    starting_dict.update({"Apocalipsis":chapDict})
+
