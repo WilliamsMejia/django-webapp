@@ -70,4 +70,4 @@ with open('Clean_RV.csv') as csv_file:
         temp = starting_dict.get(bChoice)
         chap = temp.get(cChoice)
         print(chap[vChoice-1])
-        str = input("Would you like to continue? y/n ")
+        str = input("Would you like to continue? y/n: ")
