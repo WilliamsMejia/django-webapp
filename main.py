@@ -62,3 +62,12 @@ with open('Clean_RV.csv') as csv_file:
     chapDict.update({22:verseList})
     starting_dict.update({"Apocalipsis":chapDict})
 
+    str = ''
+    while str != 'n':
+        bChoice = input("What Book would you like to read? ")
+        cChoice = int(input("What Chapter would you like to read? "))
+        vChoice = int(input("What Verse would you like to read? "))
+        temp = starting_dict.get(bChoice)
+        chap = temp.get(cChoice)
+        print(chap[vChoice-1])
+        str = input("Would you like to continue? y/n ")
