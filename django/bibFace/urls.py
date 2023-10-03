@@ -20,5 +20,6 @@ from pages import views as page_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', page_views.home_view, name='home'),
+    path('', page_views.home_view, name='home/'),
+    path('my_recipes/', page_views.user_pages, name='myPage'),
 ]
