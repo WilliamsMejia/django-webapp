@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>In App Template: {{obect.rName}}</h1>
+<p>{% if object.rName != None and object.rName != '' %}{{ object.rName }}{% else %}
+    Description Coming Soon {% endif %}</p>
+
+{{ object.ingredients }}
+{% endbocl %}

@@ -17,9 +17,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from pages import views as page_views
+from recipes import views as recipes_views
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', page_views.home_view, name='home/'),
-    path('my_recipes/', page_views.user_pages, name='myPage'),
+    path('my_recipes/', recipes_views.recipe_create_view, name='myPage'),
+    
 ]
