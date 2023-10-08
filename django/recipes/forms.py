@@ -1,8 +1,8 @@
 from django import forms
 
 from .models import recipe
-
-
+from profanity_filter import ProfanityFilter
+import spacy
 class RecipeForm(forms.ModelForm):
     Title = forms.CharField(widget = forms.TextInput(attrs={"placeholder": "Your Title"}))
     class Meta:
@@ -14,11 +14,12 @@ class RecipeForm(forms.ModelForm):
         'Ingredients',
         'Directions'
         ]
-    def clean_Title(self, *args, **kwargs):
-        title = self.cleaned_data.get('Title').split()
+
+    def clean_Title(self, *args, **kwargs): #Very simple profanity filter to check for banned words and change then to ****
+        
+        title = self.cleaned_data.get('Title')
         with open('BannedWords.txt') as file:
-            contents = file.read()
-            for word in title:
-                if word in contents:
-                    raise forms.ValidationError("Please do not use inappropriate language")
-        return " ".join(title)
+                contents = file.read()
+                for word in contents:
+                        title = title.replace(word, '*' * len(word))
+                return title
