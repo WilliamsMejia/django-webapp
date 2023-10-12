@@ -1,8 +1,8 @@
 from django import forms
 
 from .models import recipe
-from profanity_filter import ProfanityFilter
-import spacy
+
+
 class RecipeForm(forms.ModelForm):
     Title = forms.CharField(widget = forms.TextInput(attrs={"placeholder": "Your Title"}))
     class Meta:
